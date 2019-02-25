@@ -24,7 +24,9 @@ def getChunks():
     }
     '''
     chunks = glob(chunkCache + '*.pklz')
+    print(chunks)
     chunks = [chunk.replace(chunkCache, '') for chunk in chunks]
+    print(chunks)
 
     year_chunk = defaultdict(list)
     for chunk in chunks:
@@ -114,6 +116,7 @@ class RandomSentenceLoader():
             return None
 
         yearChunks = self.chunks[nextYear]
+        print(yearChunks)
         selectIdx = np.random.randint(len(yearChunks))
         miniBatch = yearChunks[selectIdx]
         del yearChunks[selectIdx]

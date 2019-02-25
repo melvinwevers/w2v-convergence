@@ -10,7 +10,7 @@ from randomsentenceloader import RandomSentenceLoader
 from randomsentenceloader import buildChunks
 from convergence import testModelConvergence
 from w2vtransformation import getModelInv
-from convergence import generateModelsForPeriod, computeConvergenceOverYearRangeWithBuildModels
+from convergence import generateModelsForPeriod, computeConvergenceOverYearRangeWithBuiltModels
 
 allYears = getYears()
 
@@ -31,6 +31,6 @@ for randomSeed in runSeeds:
     modelFolder = './run%d_s%d'%(y0,randomSeed)
 
     generateModelsForPeriod(years, minSentences, maxSentences, nSteps, chunkSize, randomSeed, vector_size, modelFolder)
-    convergence, sentenceYearCounter, vocabSize = computeConvergenceOverYearRangeWithBuildModels(modelFolder, vector_size)
+    convergence, sentenceYearCounter, vocabSize = computeConvergenceOverYearRangeWithBuiltModels(modelFolder, vector_size)
     fname = modelFolder + '/convergenceRange_%d.pkl'%y0
     pkl.dump((convergence, sentenceYearCounter, vocabSize), open(fname, 'wb'))

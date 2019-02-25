@@ -13,8 +13,9 @@ from randomsentenceloader import buildChunks, RandomSentenceLoader
 from w2vtransformation import calculateTransform, getModelInv
 
 
-# import logging
-# logging.basicConfig(format='%(asctime)s : %(levelname)s : %(message)s', level=logging.DEBUG)
+import logging
+logging.basicConfig(format='%(asctime)s : %(levelname)s : %(message)s', level=logging.DEBUG)
+
 
 def computeConvergenceOverYearRange(yearRange, batchSize, maxSentences):
     '''Compute the convergence of w2v models generated over a given range of
@@ -53,7 +54,7 @@ def computeConvergenceOverYearRange(yearRange, batchSize, maxSentences):
         print modelName + ',',
 
         model.build_vocab(batch, update=doUpdate)
-        # model.train(batch, model.corpus_count, epochs=model.iter)
+        #model.train(batch, total_examples=model.corpus_count, epochs=model.iter)
         model.train(batch)
         modelinv = getModelInv(model)
 

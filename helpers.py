@@ -10,19 +10,21 @@ import string
 import gzip
 
 from util import checkPath
-from settings import dataDir, cacheDir
+#from settings import dataDir, cacheDir
+from settings import cacheDir
 
-print 'Using data from : ' + dataDir
+
+#print 'Using data from : ' + dataDir
 print 'Using cache from: ' + cacheDir
 
 _englishWords = set(w.lower() for w in words.words())
-_englishStopWords = set(stopwords.words('english'))
+_dutchStopWords = set(stopwords.words('dutch'))
 
 
 def getYears():
     """Return a list of years for which data is available."""
-    years = glob(dataDir + '????')
-    years = [int(year.replace(dataDir, '')) for year in years]
+    years = glob(cacheDir + '????.pklz')
+    years = [int(year.replace(cacheDir, '')[:-5]) for year in years]
     years = np.array(years)
     years.sort()
     return years
@@ -90,6 +92,7 @@ def _getArticlesInDoc(doc):
         df = pd.DataFrame.from_csv(doc, encoding='UTF8')
         df = df.replace(np.nan, '')
         df['FullData'] = df['Title'] + df['Content']
+        #df['FullData'] = df['Title'] + df['Text']
         return df['FullData'].tolist()
     except Exception as e:
         print 'Error reading file: ', doc

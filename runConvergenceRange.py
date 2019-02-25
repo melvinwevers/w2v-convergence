@@ -22,7 +22,7 @@ def measureConvergence(y0, nYears, saveDir):
     Call computeConvergenceOverYearRange for sentences in the given year range
     and save convergence results to the given directory.
     """
-    batchSize = 1e6
+    batchSize = 1e4
     maxSentences = 10e7
     yN = y0 + nYears
     allYears = getYears()

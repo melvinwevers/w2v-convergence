@@ -35,7 +35,7 @@ def generateModels(y0, yN, yearsInModel, stepYears, modelFolder):
         print 'Building model: ', modelName
 
         sentences = getSentencesInRange(startY, endY)
-        model = gensim.models.Word2Vec(min_count=1)
+        model = gensim.models.Word2Vec(min_count=1, size=300, window=5, sg=1, hs=1)
         model.build_vocab(sentences)
         model.train(sentences)
 
